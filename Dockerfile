@@ -4,3 +4,4 @@ MAINTAINER  Wouter Haffmans <wouter@simply-life.net>
 WORKDIR /
 RUN wget "https://git.simply-life.net/packages/ubuntu/trusty/qommando-master.tar.bz2" -O /tmp/qommando-master.tar.bz2 \
     && tar -jxvf /tmp/qommando-master.tar.bz2
+    && rm /tmp/qommando-master.tar.bz2
