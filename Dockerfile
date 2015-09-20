@@ -1,4 +1,4 @@
-FROM        cmake-qt5:latest
+FROM        haffmans/cmake-qt5:latest
 MAINTAINER  Wouter Haffmans <wouter@simply-life.net>
 
 WORKDIR /
