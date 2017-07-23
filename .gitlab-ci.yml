@@ -25,7 +25,7 @@ Build master:
 Build other:
   stage: build
   script:
-  - docker build --no-cache --tag=${DOCKERHUB_USER}/${DOCKERHUB_REPO}:${CI_BUILD_REF_NAME} .
+  - docker build --no-cache --tag=${DOCKERHUB_USER}/${DOCKERHUB_REPO}:${CI_COMMIT_REF_NAME} .
   tags:
   - docker
   except:
@@ -37,7 +37,7 @@ Build branch on Docker Hub:
   stage: deploy
   image: governmentpaas/curl-ssl
   script:
-  - 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Branch\", \"source_name\": \"${CI_BUILD_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/${DOCKERHUB_USER}/${DOCKERHUB_REPO}/trigger/${DOCKERHUB_TOKEN}/'
+  - 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Branch\", \"source_name\": \"${CI_COMMIT_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/${DOCKERHUB_USER}/${DOCKERHUB_REPO}/trigger/${DOCKERHUB_TOKEN}/'
   except:
   - tags
 
@@ -45,6 +45,6 @@ Build tag on Docker Hub:
   stage: deploy
   image: governmentpaas/curl-ssl
   script:
-  - 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Tag\", \"source_name\": \"${CI_BUILD_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/${DOCKERHUB_USER}/${DOCKERHUB_REPO}/trigger/${DOCKERHUB_TOKEN}/'
+  - 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Tag\", \"source_name\": \"${CI_COMMIT_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/${DOCKERHUB_USER}/${DOCKERHUB_REPO}/trigger/${DOCKERHUB_TOKEN}/'
   except:
   - branches
