@@ -35,6 +35,7 @@ Build other:
 # The repository itself is mirrored to GitHub immediately on every push.
 Build branch on Docker Hub:
   stage: deploy
+  image: governmentpaas/curl-ssl
   script:
   - 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Branch\", \"source_name\": \"${CI_BUILD_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/${DOCKERHUB_USER}/${DOCKERHUB_REPO}/trigger/${DOCKERHUB_TOKEN}/'
   except:
@@ -42,6 +43,7 @@ Build branch on Docker Hub:
 
 Build tag on Docker Hub:
   stage: deploy
+  image: governmentpaas/curl-ssl
   script:
   - 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Tag\", \"source_name\": \"${CI_BUILD_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/${DOCKERHUB_USER}/${DOCKERHUB_REPO}/trigger/${DOCKERHUB_TOKEN}/'
   except:
