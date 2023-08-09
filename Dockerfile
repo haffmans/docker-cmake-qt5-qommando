@@ -1,4 +1,4 @@
-FROM        haffmans/cmake-qt5:22.04
+FROM        haffmans/cmake-qt5:16.04
 MAINTAINER  Wouter Haffmans <wouter@simply-life.net>
 
 WORKDIR /
